@@ -1,0 +1,125 @@
+//by Aditya Dagonkar 
+//Reference GFG and WWS
+//feel free to use it! Thanks
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void CGPA(); //to avoid error  in main function
+void menu();
+
+int main()
+{
+    system("cls");
+    int choice;
+    cout<<"                          CGPA Calculator             "<<endl;
+    cout<<"_____________________________________________________________________________________\n"<<endl;
+    cout<<"            MENU:"<<endl;
+    cout<<"                   1. Calculate CGPA (Cummulative Grade Point Average)"<<endl;
+    cout<<"                   2. Learn how CGPA is calculated"<<endl;
+    cout<<"                   3. Exit\n"<<endl;
+    cout<<"_____________________________________________________________________________________"<<endl;
+    jump:
+    cout<<"Enter your choice: ";
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+                CGPA();
+                break;
+        case 2:
+                menu();
+                break;
+        case 3:
+                cout<<"Exiting the application.\n";
+                exit(EXIT_SUCCESS);
+                break;
+        default:
+            cout<<"Choose valid option. Try again!\n"<<endl;
+            goto jump;
+            break;
+    }
+
+return 0;
+}
+
+void CGPA()
+{
+    system("cls");
+    int l;
+    cout<<"-------------- CGPA Calculating -----------------\n\n"<<endl;
+    cout<<"How many semester results do you want choice? :";
+    cin>>l;
+    cout<<"\n\n"<<endl;
+    float semResult[l];
+    int i;
+
+    for(i=0;i<l;i++)
+    {
+        cout<<" Enter Semester "<<i+1<<" Result(GPA): ";
+        cin>>semResult[i];
+        cout<<"\n"<<endl;
+    }
+
+    float semtot=0;
+    for(int j=0;j<l;j++)
+    {
+        semtot=semtot+semResult[j];
+    }
+
+    cout<<"******** Your CGPA is "<<semtot/l<<" **********"<<endl;
+
+
+    jump:
+    int inmenu;
+    cout<<"\n\n\n1. Calculate Again"<<endl;
+    cout<<"2. Go Back to Main Menu"<<endl;
+    cout<<"3. Exit \n\n"<<endl;
+    cout<<"Your choice: "<<endl;
+    cin>>inmenu;
+
+    switch(inmenu)
+    {
+        case 1:
+                CGPA();
+                break;
+        case 2:
+                main();
+                break;
+        case 3:
+                exit(EXIT_SUCCESS);
+
+        default:
+              cout<<"\n\nYou have Entered Wrong choice!Please Choose Again!"<<endl;
+              goto jump;
+    }
+
+}
+void menu()
+{
+    system("cls");
+    cout<<"____________________Method to calculate CGPA ____________________\n\n"<<endl;
+    cout<<" CGPA =  Sum of GPA / number of semesters "<<endl;
+    cout<<"_________________________________________________________________n\n"<<endl;
+
+    jump:
+    int inmenu;
+    cout<<"1. Go Back to Main Menu"<<endl;
+    cout<<"2. Exit This App \n\n"<<endl;
+    cout<<"Your choice: "<<endl;
+    cin>>inmenu;
+
+    switch(inmenu)
+    {
+        case 1:
+                main();
+                break;
+        case 2:
+                exit(EXIT_SUCCESS);
+
+        default:
+              cout<<"\n\nYou have Entered Wrong choice!Please Choose Again!"<<endl;
+              goto jump;
+    }
+}
+
