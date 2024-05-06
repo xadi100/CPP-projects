@@ -1,0 +1,63 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+#include <vector>
+#include <sstream> // Add this line
+
+// Define a structure for storing document information
+struct Document {
+    std::string title;
+    std::string content;
+};
+
+class SearchEngine {
+private:
+    std::unordered_map<std::string, std::vector<int>> index; // Hash table for indexing
+
+public:
+    // Function to add a document to the search engine index
+    void addDocument(const Document& doc, int docId) {
+        // Tokenize content and index each word
+        std::string word;
+        std::istringstream iss(doc.content);
+        while (iss >> word) {
+            index[word].push_back(docId);
+        }
+    }
+
+    // Function to search for documents containing a query term
+    std::vector<int> search(const std::string& query) {
+        if (index.find(query) != index.end()) {
+            return index[query];
+        } else {
+            return {}; // Empty vector if query term not found
+        }
+    }
+};
+
+int main() {
+    // Sample documents
+    Document doc1 = {"Document 1", "This is the content of document 1"};
+    Document doc2 = {"Document 2", "This is the content of document 2"};
+    Document doc3 = {"Document 3", "This is the content of document 3"};
+
+    // Create a search engine instance
+    SearchEngine searchEngine;
+
+    // Add documents to the search engine index
+    searchEngine.addDocument(doc1, 1);
+    searchEngine.addDocument(doc2, 2);
+    searchEngine.addDocument(doc3, 3);
+
+    // Search for documents containing a query term
+    std::string query = "content";
+    std::vector<int> results = searchEngine.search(query);
+
+    // Display search results
+    std::cout << "Search results for query '" << query << "':" << std::endl;
+    for (int result : results) {
+        std::cout << "Document " << result << std::endl;
+    }
+
+    return 0;
+}
